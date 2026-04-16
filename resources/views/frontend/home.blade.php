@@ -84,12 +84,21 @@
         position: relative;
         padding: 100px 0;
     }
-    .tentang-cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+    .carousel-wrapper {
+        overflow: hidden;
+        width: 100%;
         position: relative;
-        top: 50px; /* Overlap effect */
+        top: 50px;
+        padding: 60px 0 20px;
+    }
+    .tentang-cards {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        animation: infinite-scroll 10s linear infinite;
+    }
+    .carousel-wrapper:hover .tentang-cards {
+        animation-play-state: paused;
     }
     .t-card {
         background: var(--white);
@@ -98,6 +107,7 @@
         text-align: center;
         position: relative;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        width: 300px; /* Fixed width for carousel consistency */
     }
     .t-card-img {
         width: 120px;
@@ -119,6 +129,16 @@
     .t-card p {
         font-size: 0.8rem;
         color: #777;
+    }
+
+    @keyframes infinite-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-330px * 4)); } /* (Width 300 + Gap 30) * 4 Original Cards */
+    }
+
+    /* Responsive adjustments for carousel */
+    @media (max-width: 992px) {
+        .carousel-wrapper { top: 0; margin-top: 80px; }
     }
 
     /* Berita Section */
@@ -254,30 +274,50 @@
     <div class="tentang-bg">
         <div class="container">
             <div class="hero-overlay"></div>
-            <div class="tentang-cards">
-                <!-- Card 1 -->
-                <div class="t-card">
-                    <img src="{{ asset('images/img-1.png') }}" alt="Food 1" class="t-card-img">
-                    <h4>BAHAN SEGAR</h4>
-                    <p>Kami selalu menggunakan bahan baku terbaik dan segar setiap hari untuk menjamin kualitas rasa.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="t-card">
-                    <img src="{{ asset('images/img-2.png') }}" alt="Food 2" class="t-card-img">
-                    <h4>RESEP AUTENTIK</h4>
-                    <p>Setiap hidangan diramu dengan bumbu rahasia yang autentik, memberikan cita rasa yang sulit dilupakan.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="t-card">
-                    <img src="{{ asset('images/img-3.png') }}" alt="Food 3" class="t-card-img">
-                    <h4>KOKI AHLI</h4>
-                    <p>Dapur kami dipimpin oleh koki profesional yang berdedikasi tinggi untuk menyajikan mahakarya kuliner.</p>
-                </div>
-                <!-- Card 4 -->
-                <div class="t-card">
-                    <img src="{{ asset('images/img-4.png') }}" alt="Food 4" class="t-card-img">
-                    <h4>MENU BERAGAM</h4>
-                    <p>Nikmati berbagai pilihan menu dari tradisional hingga modern yang disesuaikan dengan selera lidah Anda.</p>
+            <div class="carousel-wrapper">
+                <div class="tentang-cards">
+                    <!-- Set 1 -->
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-1.png') }}" alt="Food 1" class="t-card-img">
+                        <h4>BAHAN SEGAR</h4>
+                        <p>Kami selalu menggunakan bahan baku terbaik dan segar setiap hari untuk menjamin kualitas rasa.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-2.png') }}" alt="Food 2" class="t-card-img">
+                        <h4>RESEP AUTENTIK</h4>
+                        <p>Setiap hidangan diramu dengan bumbu rahasia yang autentik, memberikan cita rasa yang sulit dilupakan.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-3.png') }}" alt="Food 3" class="t-card-img">
+                        <h4>KOKI AHLI</h4>
+                        <p>Dapur kami dipimpin oleh koki profesional yang berdedikasi tinggi untuk menyajikan mahakarya kuliner.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-4.png') }}" alt="Food 4" class="t-card-img">
+                        <h4>MENU BERAGAM</h4>
+                        <p>Nikmati berbagai pilihan menu dari tradisional hingga modern yang disesuaikan dengan selera lidah Anda.</p>
+                    </div>
+                    <!-- Duplicate Set for Seamless Loop -->
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-1.png') }}" alt="Food 1" class="t-card-img">
+                        <h4>BAHAN SEGAR</h4>
+                        <p>Kami selalu menggunakan bahan baku terbaik dan segar setiap hari untuk menjamin kualitas rasa.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-2.png') }}" alt="Food 2" class="t-card-img">
+                        <h4>RESEP AUTENTIK</h4>
+                        <p>Setiap hidangan diramu dengan bumbu rahasia yang autentik, memberikan cita rasa yang sulit dilupakan.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-3.png') }}" alt="Food 3" class="t-card-img">
+                        <h4>KOKI AHLI</h4>
+                        <p>Dapur kami dipimpin oleh koki profesional yang berdedikasi tinggi untuk menyajikan mahakarya kuliner.</p>
+                    </div>
+                    <div class="t-card">
+                        <img src="{{ asset('images/img-4.png') }}" alt="Food 4" class="t-card-img">
+                        <h4>MENU BERAGAM</h4>
+                        <p>Nikmati berbagai pilihan menu dari tradisional hingga modern yang disesuaikan dengan selera lidah Anda.</p>
+                    </div>
                 </div>
             </div>
         </div>
