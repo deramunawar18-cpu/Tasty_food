@@ -95,7 +95,7 @@
         display: flex;
         gap: 30px;
         width: max-content;
-        animation: infinite-scroll 10s linear infinite;
+        animation: infinite-scroll 13s linear infinite;
     }
     .carousel-wrapper:hover .tentang-cards {
         animation-play-state: paused;

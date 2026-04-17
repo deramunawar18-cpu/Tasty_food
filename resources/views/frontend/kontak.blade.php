@@ -190,10 +190,10 @@
                 <h4>PHONE</h4>
                 <p>+62 812 3456 7890</p>
             </div>
-            <div class="k-item">
+            <div id="location-trigger" class="k-item" style="cursor: pointer;">
                 <div class="k-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h4>LOCATION</h4>
-                <p>Kota Bandung, Jawa Barat</p>
+                <p>Jl. Terusan Mars Utara III No.8D, Manjahlega, Bandung</p>
             </div>
         </div>
     </div>
@@ -202,10 +202,36 @@
     <div style="background: #f8f9fa; padding: 40px 0;">
         <div class="container">
             <div class="k-map">
-                <!-- Gunakan iframe Google Maps sesungguhnya -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311709235512!3d-6.903444341687889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1714207851234!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- Google Maps (Dinamis via JS) -->
+                <iframe id="main-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311709235512!3d-6.903444341687889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1714207851234!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const trigger = document.getElementById('location-trigger');
+        const map = document.getElementById('main-map');
+        
+        const urls = {
+            bandung: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311709235512!3d-6.903444341687889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1714207851234!5m2!1sid!2sid",
+            cyberlabs: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.8319377929747!2d107.66141237356577!3d-6.943206067967048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7c381e3c323%3A0x5f5160f6c9796e4b!2sCyberLabs!5e1!3m2!1sen!2sid!4v1776343763337!5m2!1sen!2sid"
+        };
+
+        let currentMode = 'bandung';
+
+        trigger.addEventListener('click', function() {
+            if (currentMode === 'bandung') {
+                map.src = urls.cyberlabs;
+                currentMode = 'cyberlabs';
+                trigger.querySelector('.k-icon').style.background = '#e6b325'; // Visual feedback
+            } else {
+                map.src = urls.bandung;
+                currentMode = 'bandung';
+                trigger.querySelector('.k-icon').style.background = '#111'; // Reset visual
+            }
+        });
+    });
+</script>
 @endsection
